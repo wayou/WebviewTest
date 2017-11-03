@@ -1,25 +1,23 @@
-//
-//  ViewController.swift
-//  WebviewTest
-//
-//  Created by wayou on 03/11/2017.
-//  Copyright © 2017 wayou. All rights reserved.
-//
-
 import UIKit
+import WebKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,WKNavigationDelegate {
 
+    var webView: WKWebView!
+
+    override func loadView() {
+        webView = WKWebView()
+        webView.navigationDelegate = self
+        view = webView
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        let url = URL(string: "http://m.wayong.umucdn.cn/session/article?surl=Fs5e06a")!
+        webView.load(URLRequest(url: url) as URLRequest)
+        webView.allowsBackForwardNavigationGestures = true
+
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
+
 
